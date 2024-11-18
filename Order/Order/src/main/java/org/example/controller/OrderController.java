@@ -18,9 +18,14 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping(value = "/orders")
-    public ResponseEntity<OrderDTO> createOrder (@RequestBody OrderItemDTO orderItemDTO){
-        Order order=orderService.createOrder(orderItemDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Order> createOrder (@RequestBody OrderItemDTO orderItemDTO){
+        try{
+            Order order=orderService.createOrder(orderItemDTO);
+            return new ResponseEntity<>(order,HttpStatus.CREATED);
+        }catch (Exception e){
+
+        }
+
 
 }
 }
